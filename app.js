@@ -12,6 +12,7 @@ function newColor (e){
 function makeCell(rows = 16, cols = 16) {
     container.style.setProperty("--grid-rows", rows);
     container.style.setProperty("--grid-cols", cols);
+    container.innerHTML = "";
     for (i = 0; i < (rows * cols); i++) {
         let cell = document.createElement("div");
         cell.addEventListener("mouseover", newColor)
@@ -21,7 +22,6 @@ function makeCell(rows = 16, cols = 16) {
 
 function reSize (){
     let size = Number(prompt("Enter a value between 0 to 100"))
-    container.innerHTML = "";
     if (0 < size && size <= 100){
         makeCell(size, size)}
     else if(size > 100){
