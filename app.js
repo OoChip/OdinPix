@@ -21,6 +21,7 @@ function makeCell(rows = 16, cols = 16) {
 
 function reSize (){
     let size = Number(prompt("Enter a value between 0 to 100"))
+    container.innerHTML = "";
     if (0 < size && size <= 100){
         makeCell(size, size)}
     else if(size > 100){
