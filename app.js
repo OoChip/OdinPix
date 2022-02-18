@@ -1,11 +1,8 @@
 //Generate a random number between 0 and 255 to be used as RGB code.
-function sacula () {return  Math.round(Math.random() * 255)}
+function random (){return Math.round(Math.random() * 255)}
 
 //Generates a new RGB color and paints with it the cell that generated the event (mouseover).
-function newColor (e){   
-    const newColor = `rgb(${sacula()},${sacula()},${sacula()})`
-    e.target.style.backgroundColor = newColor
-}
+function newColor (e){e.target.style.backgroundColor = `rgb(${random()},${random()},${random()})`}
 
 //Generates all the cells and fills the grid with them.
 function buildCells(rows = 16, cols = 16) {
@@ -14,8 +11,9 @@ function buildCells(rows = 16, cols = 16) {
     container.innerHTML = "" //Important. Clean the grid before adding the new cells (source of all evil).
     for (i = 0; i < (rows * cols); i++) {
         const cell = document.createElement("div")
-        cell.addEventListener("mouseover", newColor)
-        container.appendChild(cell).className = "grid-item"
+        cell.className = "grid-item"
+        cell.addEventListener("mouseenter", newColor)
+        container.appendChild(cell)
     }
 }
 
