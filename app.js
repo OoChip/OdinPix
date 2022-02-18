@@ -1,33 +1,35 @@
-const container = document.getElementById("grid-container");
-
-function random(number) {
-    return Math.floor(Math.random() * number + 1);
+function sacula () {
+    return  Math.floor(Math.random() * 128)
+    console.log(sacula);
 }
 
-function makeRows(rows, cols) {
+function newColor (e){   
+    const newColor = `rgb(${sacula()},${sacula()},${sacula()})`;
+    let cell= e.target
+    cell.style.backgroundColor = newColor
+}
+
+function makeCell(rows = 16, cols = 16) {
     container.style.setProperty("--grid-rows", rows);
     container.style.setProperty("--grid-cols", cols);
-    for (c = 0; c < (rows * cols); c++) {
+    for (i = 0; i < (rows * cols); i++) {
         let cell = document.createElement("div");
+        cell.addEventListener("mouseover", newColor)
         container.appendChild(cell).className = "grid-item";
-        cell.addEventListener("mouseover", function bgChange() {
-            const rndCol = "rgb(" + random(255) + "," + random(255) + "," + random(255) + ")";
-            cell.style.backgroundColor = rndCol;
-        });
     };
 };
 
-makeRows(16,16);
+function reSize (){
+    let size = Number(prompt("Enter a value between 0 to 100"))
+    if (0 < size && size <= 100){
+        makeCell(size, size)}
+    else if(size > 100){
+        makeCell()
+        alert ("the value must be between o to 100")}
+}
+
+const container = document.querySelector(".grid-container");
+makeCell();
 
 const button = document.getElementById("button");
-
-button.addEventListener("click", function changeSize(size) {
-    size = prompt("Enter a value between 0 to 101");
-    container.innerHTML = "";
-    if (0 < size && size <= 100) {
-        makeRows(size, size);
-    } else {
-        makeRows(16, 16);
-        alert ("Only type values between 1 to 100");
-    }
-});
+button.addEventListener ("click", reSize)
